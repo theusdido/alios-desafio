@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
+import { RestService } from '../service/rest.service';
 import { ValidarService } from '../service/validar.service';
 
 export interface Cooperado{
@@ -19,7 +20,7 @@ export class ConsultaCpfComponent {
   public cpf:string = '';
   public valid_class_cpf:string = '';
   public msg_error:string = '';
-  public display_situacao_cadastral:string = '';
+  public cards_consulta:string = 'none';
 
   public cooperado:Cooperado = {
     nome:'Mariane de Souza Oliveira',
@@ -72,7 +73,8 @@ export class ConsultaCpfComponent {
   @ViewChildren('required')  obrigatorios: any;
 
   constructor(
-    public validar:ValidarService
+    public validar:ValidarService,
+    public rest:RestService
   ) { }
 
   ngOnInit(): void {
@@ -88,9 +90,16 @@ export class ConsultaCpfComponent {
       this.valid_class_cpf = this.validar.getTDClass(is_valid_cpf);
       this.msg_error = 'Informe um CPF válido'
       return;
-    }
+    }    
 
-    this.display_situacao_cadastral = 'inline';
+    this.rest.get('https://raw.githubusercontent.com/theusdido/alios-desafio/master/cooperados.json')
+    .subscribe(
+      (_res:any) => {
+        const result = _res.find(() => _res.cpf === this.cpf);
+        console.log(result);
+        this.cards_consulta = 'inline';
+      }
+    );
   }
 
   salvar() : any {

@@ -18,6 +18,7 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { ConsultaCpfComponent } from './consulta-cpf/consulta-cpf.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IConfig, NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
 const maskConfig: Partial<IConfig> = {
@@ -45,7 +46,8 @@ const maskConfig: Partial<IConfig> = {
     NgxFileDropModule,
     FormsModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    HttpClientModule
   ],
   providers: [
     provideEnvironmentNgxMask(maskConfig)
