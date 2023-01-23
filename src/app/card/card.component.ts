@@ -17,4 +17,8 @@ export class CardComponent {
   @Input() link!:Link;
 
   constructor(){}
+
+  setItens(_itens:Array<any>){
+    this.itens = _itens;
+  }
 }

@@ -2,6 +2,7 @@
     {
         "nome":"Mariane de Souza Oliveira",
         "cpf":"81256882500",
+        "situacao":"Regular",
         "conta":{
           "aplicacao":"557932-4",
           "corrente":"778461-8"

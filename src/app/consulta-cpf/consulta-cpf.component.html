@@ -32,20 +32,20 @@
     <app-card
         titulo="Situação Cadastral do CPF"
         legenda="Consulta na Receita Federal"
-        [itens]="situacao_cadastral"
+        #card_situacao_cadastral
     ></app-card>
 
     <app-card
         titulo="Conta Aplicação"
         legenda="Cooperativa Viacredi"
-        [itens]="conta_aplicacao"
         [link]="duplicar_conta_aplicacao"
+        #card_conta_aplicacao
     ></app-card>
 
     <app-card
         titulo="Conta Corrente"
         legenda="Cooperativa Viacredi"
-        [itens]="conta_corrente"
         [link]="duplicar_conta_corrente"
+        #card_conta_corrente
     ></app-card>
 </section>

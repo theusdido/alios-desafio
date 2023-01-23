@@ -23,6 +23,9 @@ export class ConsultaCpfComponent {
   public msg_error:string = '';
   public cards_consulta:string = 'none';
   @ViewChild('btn_iniciar_admissao') _btn_iniciar_admissao:any;
+  @ViewChild('card_situacao_cadastral') _card_situacao_cadastral:any;
+  @ViewChild('card_conta_aplicacao') _card_conta_aplicacao:any;
+  @ViewChild('card_conta_corrente') _card_conta_corrente:any;
 
   public cooperado:Cooperado = {
     nome:'',
@@ -33,42 +36,13 @@ export class ConsultaCpfComponent {
     }    
   };
 
-  public situacao_cadastral:Array<any> = [
-    {
-      icone:'./assets/icon/user.png',
-      titulo:this.cooperado.nome,
-      legenda:'Nome'
-    },
-    {
-      icone:'./assets/icon/check-success.png',
-      titulo:'Situação do CPF',
-      legenda:'Regular'
-    }
-  ];
-
-  public conta_aplicacao:Array<any> = [
-    {
-      icone:'./assets/icon/conta.png',
-      titulo:'Número da conta',
-      legenda:this.cooperado.conta.aplicacao
-    }
-  ];  
-
-  public conta_corrente:Array<any> = [
-    {
-      icone:'./assets/icon/conta.png',
-      titulo:'Número da conta',
-      legenda:this.cooperado.conta.corrente
-    }
-  ];
-
   public duplicar_conta_aplicacao:any = {
-    href:'/duplicar/ca/' + this.cooperado.conta.aplicacao,
+    href:'/duplicar/ca/',
     label:'Duplicar'
   };
 
   public duplicar_conta_corrente:any = {
-    href:'/duplicar/cc/' + this.cooperado.conta.corrente,
+    href:'/duplicar/cc/',
     label:'Duplicar'
   };
 
@@ -101,6 +75,35 @@ export class ConsultaCpfComponent {
       (_res:any) => {
         const result = _res.find((_cooperado:any) => _cooperado.cpf === this.cpf);
         if (result != undefined){
+          this._card_situacao_cadastral.setItens([
+            {
+              icone:'./assets/icon/user.png',
+              titulo:result.nome,
+              legenda:'Nome'
+            },
+            {
+              icone:'./assets/icon/check-success.png',
+              titulo:'Situação do CPF',
+              legenda:result.situacao
+            }
+          ]);
+
+          this._card_conta_aplicacao.setItens([
+            {
+              icone:'./assets/icon/conta.png',
+              titulo:'Número da conta',
+              legenda:result.conta.aplicacao
+            }
+          ]);
+
+          this._card_conta_corrente.setItens([
+            {
+              icone:'./assets/icon/conta.png',
+              titulo:'Número da conta',
+              legenda:this.cooperado.conta.corrente
+            }
+          ]);
+
           this.cards_consulta = 'flex';
         }else{
           this.botoesrodape_service.on_btn_iniciar_admissao.next('initial');
