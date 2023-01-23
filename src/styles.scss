@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './_variables';
+
 body{
     margin:0;
     padding:0;
@@ -33,21 +36,26 @@ body{
 
  }
 
-form fieldset 
+ // SAAS - Exemplo de regras aninhadas
+form 
 {
-    border:none;
-    margin: 0;
-    padding: 0;
+    fieldset
+    {
+        border:none;
+        margin: 0;
+        padding: 0;
+
+        legend
+        {
+            font-family: open-sans;
+            font-weight: 700;
+            font-size:14px;
+            color:#000;
+            text-transform: uppercase;
+        }
+    }
 }
 
-form fieldset legend
-{
-    font-family: open-sans;
-    font-weight: 700;
-    font-size:14px;
-    color:#000;
-    text-transform: uppercase;
-}
 .form-group {
     display: flex;
     flex-direction: column;
@@ -108,13 +116,13 @@ button
 
 button.primario
 {
-    border:1px solid #165C7D;
-    background-color: #165C7D;
+    border:1px solid $ailos-azul;
+    background-color: $ailos-azul;
     color:#FFF;
 }
 
 button.primario:hover{
-    background-color:#012F44;
+    background-color:$ailos-azul;
 }
 
 button.primario:focus
@@ -124,9 +132,9 @@ button.primario:focus
 
 button.secundario
 {
-    border:1px solid #165C7D;
+    border:1px solid $ailos-azul;
     background-color: transparent;
-    color:#165C7D;
+    color:$ailos-azul;
 }
 
 button.secundario:hover

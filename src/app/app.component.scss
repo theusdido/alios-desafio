@@ -1,3 +1,5 @@
+@import './src/_variables';
+
 .layout{
     display:grid;
     grid-template-columns: 85px auto;
@@ -12,7 +14,7 @@ header {
 
  aside {
     grid-area: menu;
-    background-color: #165c7d;
+    background-color: $ailos-azul;
  }
  
  main {

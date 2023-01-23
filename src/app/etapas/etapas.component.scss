@@ -1,3 +1,4 @@
+@import './src/_variables';
 .component-step {
     padding: 0;
     margin: 0;
@@ -15,7 +16,7 @@
 
 .icon-step {    
     color: #495057;
-    border: 2px solid #165C7D;
+    border: 2px solid $ailos-azul;
     min-width: 18px;
     height: 18px;
     line-height: 18px;
@@ -27,7 +28,7 @@
 
 .icon-step.current{
     background-color: #E7EEF1;
-    border: 2px solid #165C7D;
+    border: 2px solid $ailos-azul;
 }
 .icon-step.inactive{
     background-color: #C6CED1;
@@ -37,7 +38,7 @@
 
 .label-step{
     font-family: open-sans;
-    color: #165C7D;
+    color: $ailos-azul;
     font-weight: 400;
     font-size: 14px;
     text-align: center;

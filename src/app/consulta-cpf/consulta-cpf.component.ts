@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChildren,ViewChild } from '@angular/core';
+import { BotoesRodapeService } from '../service/botoes-rodape.service';
 import { RestService } from '../service/rest.service';
 import { ValidarService } from '../service/validar.service';
 
@@ -21,13 +22,14 @@ export class ConsultaCpfComponent {
   public valid_class_cpf:string = '';
   public msg_error:string = '';
   public cards_consulta:string = 'none';
+  @ViewChild('btn_iniciar_admissao') _btn_iniciar_admissao:any;
 
   public cooperado:Cooperado = {
-    nome:'Mariane de Souza Oliveira',
+    nome:'',
     cpf:'',
     conta:{
-      aplicacao:'557932-4',
-      corrente:'778461-8'
+      aplicacao:'',
+      corrente:''
     }    
   };
 
@@ -74,13 +76,15 @@ export class ConsultaCpfComponent {
 
   constructor(
     public validar:ValidarService,
-    public rest:RestService
+    public rest:RestService,
+    public botoesrodape_service:BotoesRodapeService
   ) { }
 
   ngOnInit(): void {
   }
 
   consultarCPF(){
+    this.cards_consulta = 'none';
     if (!this.validar.isRequired(this.obrigatorios)){
       this.msg_error = 'Informe um CPF';
       return;
@@ -88,46 +92,20 @@ export class ConsultaCpfComponent {
     let is_valid_cpf = this.validar.isValidCPF(this.cpf);
     if (!is_valid_cpf){
       this.valid_class_cpf = this.validar.getTDClass(is_valid_cpf);
-      this.msg_error = 'Informe um CPF válido'
+      this.msg_error = 'Informe um CPF válido';
       return;
     }    
 
     this.rest.get('https://raw.githubusercontent.com/theusdido/alios-desafio/master/cooperados.json')
     .subscribe(
       (_res:any) => {
-        const result = _res.find((cooperado:any) => {
-          return cooperado.cpf === this.cpf;
-        });
-        console.log(result);
-        this.cards_consulta = 'inline';
+        const result = _res.find((_cooperado:any) => _cooperado.cpf === this.cpf);
+        if (result != undefined){
+          this.cards_consulta = 'flex';
+        }else{
+          this.botoesrodape_service.on_btn_iniciar_admissao.next('initial');
+        }
       }
     );
   }
-
-  salvar() : any {
-    // if (!this.validar.isRequired(this.obrigatorios)) return false;
-    // $("#preloader-active").show();
-    // this.rs.get("cliente",{
-    //   op:"salvar",
-    //   cliente:this.cliente
-    // }).subscribe( 
-    //   (response:any) => {
-    //     $("#preloader-active").hide();
-    //     if (response.status == 0){
-    //       ls.set("perfil","C");
-    //       ls.set("loja",0);
-    //       ls.set("isLogado",true);
-    //       ls.set("cliente",response.id);
-    //       ls.set("userid",response.userid);
-    //       ls.set("username",response.username);
-    //       ls.set("usergroup",response.usergroup);
-    //       this.rota.navigate(["/dashboard"]);
-    //     }
-    //   },
-    //   (error) => 
-    //   {
-    //     $("#preloader-active").hide();
-    //   }
-    // );
-  }  
 }
