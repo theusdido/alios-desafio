@@ -19,6 +19,11 @@ import { ConsultaCpfComponent } from './consulta-cpf/consulta-cpf.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 
+import { IConfig, NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask } from 'ngx-mask';
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,9 +43,13 @@ import { CardComponent } from './card/card.component';
     BrowserModule,
     AppRoutingModule,
     NgxFileDropModule,
-    FormsModule
+    FormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [
+    provideEnvironmentNgxMask(maskConfig)
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
