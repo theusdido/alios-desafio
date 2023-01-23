@@ -1,0 +1,48 @@
+<section class="app-consulta-cpf">
+    <h2 class="conteudo-titulo">Informe o CPF do futuro cooperado (a)</h2>
+    <p class="conteudo-texto">Se necessário, você poderá duplicar uma conta existente ou pausar e retomar este cadastro futuramente. Digite apenas os números (sem pontos ou traços).</p>
+    <form class="inline">
+        <fieldset>
+
+            <div class="form-group">
+                <label for="cpf" class="form-label">CPF</label>
+                <input 
+                    type="text" 
+                    class="form-control {{ valid_class_cpf }}" 
+                    name="cpf" 
+                    [(ngModel)]="cpf"
+                    placeholder="000.000.000-00"
+                    #required
+                    mask="000.000.000-00"
+                />
+                <small class="field-msg-error texto-auxiliar" [innerText]="msg_error"></small>
+            </div>
+            <button 
+                type="button" 
+                class="primario"
+                (click)="consultarCPF()"
+            >Consultar por CPF</button>
+        </fieldset>
+    </form>    
+</section>
+<section class="cards-consulta">
+    <app-card
+        titulo="Situação Cadastral do CPF"
+        legenda="Consulta na Receita Federal"
+        [itens]="situacao_cadastral"
+    ></app-card>
+
+    <app-card
+        titulo="Conta Aplicação"
+        legenda="Cooperativa Viacredi"
+        [itens]="conta_aplicacao"
+        [link]="duplicar_conta_aplicacao"
+    ></app-card>
+
+    <app-card
+        titulo="Conta Corrente"
+        legenda="Cooperativa Viacredi"
+        [itens]="conta_corrente"
+        [link]="duplicar_conta_corrente"
+    ></app-card>
+</section>

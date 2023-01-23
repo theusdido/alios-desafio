@@ -1,0 +1,82 @@
+.component-step {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    height: 96px;
+    align-items: center;
+}
+.step-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+.icon-step {    
+    color: #495057;
+    border: 2px solid #165C7D;
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 1.143rem;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,1);
+}
+
+.icon-step.current{
+    background-color: #E7EEF1;
+    border: 2px solid #165C7D;
+}
+.icon-step.inactive{
+    background-color: #C6CED1;
+    border: 2px solid #C6CED1;
+}
+
+
+.label-step{
+    font-family: open-sans;
+    color: #165C7D;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: top;
+    line-height: 16.41px;
+    margin-top:14px;
+}
+
+.step-hyperlink{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    text-decoration: none;      
+}
+
+.step-item::before{
+    content: " ";
+    border-top: 1px solid #C6CED1;
+    width: 100%;
+    top: 26px;
+    left: 0;
+    display: block;
+    position: absolute;
+    margin-top: -1rem; 
+    z-index: 0;       
+}
+
+.step-item:nth-child(1)::before{
+    width: 50%;
+    left: 50%;
+}
+
+.step-item:last-child::before{
+    width: 50%;
+    right: 50%;
+    
+}
+
+.step-item:last-child .label-step{
+    color:#889499;
+}

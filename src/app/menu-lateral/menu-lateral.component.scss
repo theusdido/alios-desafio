@@ -1,0 +1,12 @@
+.menu-leteral {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-leteral a {
+    margin:15px 20px 15px 30px;
+}
+.menu-leteral a img {
+    width: 25px;
+    height: 25px;
+}

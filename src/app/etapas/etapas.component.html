@@ -1,0 +1,15 @@
+<div class="area-step">
+    <ul 
+        class="component-step"        
+    >
+        <li 
+            *ngFor="let step of steps" 
+            class="step-item"
+        >
+            <a href="#" class="step-hyperlink">
+                <span class="icon-step"></span>
+                <span class="label-step">{{ step.label }}</span>    
+            </a>
+        </li>
+    </ul>
+</div>

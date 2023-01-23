@@ -1,0 +1,33 @@
+<div
+    class="card"
+>
+    <div class="card-header">
+        <p class="card-titulo" [innerText]="titulo"></p>
+        <p class="card-legenda" [innerText]="legenda"></p>
+    </div>
+
+    <ul class="card-list">
+        <li 
+            class="card-list-item"
+            *ngFor="let item of itens"
+        >
+            <div class="card-list-item-icon">
+                <img [src]="item.icone" class="icon icon-user" />
+            </div>
+            <div class="card-list-item-content">
+                <p class="card-list-legenda" [innerText]="item.legenda"></p>
+                <p class="card-list-titulo" [innerText]="item.titulo"></p>
+            </div>            
+        </li>
+        <li 
+            class="card-list-item card-item-list-link"
+            *ngIf="link!=undefined"
+        >
+            <a 
+                routerLink="link.href" 
+                class="card-link"
+                [innerText]="link.label"
+            ></a>
+        </li>
+    </ul>
+</div>

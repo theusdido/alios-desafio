@@ -1,0 +1,30 @@
+.layout{
+    display:grid;
+    grid-template-columns: 85px auto;
+    grid-template-rows: 70px auto 70px;
+    grid-template-areas: "menu topo" "menu conteudo" "menu rodape";
+}
+
+header {
+    grid-area: topo;
+    background-color: #FFF;
+ }
+
+ aside {
+    grid-area: menu;
+    background-color: #165c7d;
+ }
+ 
+ main {
+    grid-area: conteudo;
+    background-color: #E7EEF1;
+ }
+
+ footer{
+   grid-area: rodape;
+   background-color: #FFF;
+ }
+ .conteudo
+ {
+   margin: 94px 25px;
+ }
