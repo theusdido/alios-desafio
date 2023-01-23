@@ -95,7 +95,9 @@ export class ConsultaCpfComponent {
     this.rest.get('https://raw.githubusercontent.com/theusdido/alios-desafio/master/cooperados.json')
     .subscribe(
       (_res:any) => {
-        const result = _res.find(() => _res.cpf === this.cpf);
+        const result = _res.find((cooperado:any) => {
+          return cooperado.cpf === this.cpf;
+        });
         console.log(result);
         this.cards_consulta = 'inline';
       }
